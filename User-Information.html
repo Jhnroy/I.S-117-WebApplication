@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            color: #444;
+        }
+        .profile-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        .user-info p {
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>User Profile</h1>
+    
+    <div class="profile-container">
+        <div class="user-info">
+            <p id="userName">Name: </p>
+            <p id="userUsername">Username: </p>
+            <p id="userEmail">Email: </p>
+        </div>
+
+        <button onclick="logOut()">Log Out</button>
+    </div>
+
+    <script>
+        // Load the current user data from localStorage
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+        if (currentUser) {
+            document.getElementById('userName').textContent = `Name: ${currentUser.name}`;
+            document.getElementById('userUsername').textContent = `Username: ${currentUser.username}`;
+            document.getElementById('userEmail').textContent = `Email: ${currentUser.email}`;
+        } else {
+            alert('No user logged in!');
+            window.location.href = 'user.html'; // Redirect to login page
+        }
+
+        // Log out function
+        function logOut() {
+            localStorage.removeItem('currentUser'); // Remove the current user
+            alert('Logged out successfully!');
+            window.location.href = 'index.html'; // Redirect to login page
+        }
+    </script>
+
+</body>
+</html>

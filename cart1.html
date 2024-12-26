@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart!</title>
+    <!-- font-awesome cdn link -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <!-- custom css file link -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="images/png" href="images/favicon.png"> <!-- Nadagdag ko itong favicon -->
+
+    <style>
+        /* Reset margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* Header Styling */
+        #header {
+            background-color: #E3E6F3;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+        }
+
+        #header .logo {
+            width: 150px;
+        }
+
+        #navbar {
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        #navbar li {
+            margin: 0 15px;
+        }
+
+        #navbar a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        #page-header {
+            background-color: #1E1E1E;
+            color: #fff;
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        #cart {
+            background-color: #fff;
+            padding: 40px 10%;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table th, table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #f8f8f8;
+        }
+
+        table img {
+            width: 100px;
+        }
+
+        input[type="number"] {
+            padding: 5px;
+            width: 60px;
+            text-align: center;
+        }
+
+        /* Cart Add Section */
+        #cart-add {
+            background-color: #fff;
+            padding: 20px 10%;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .coupon input {
+            padding: 10px;
+            width: 70%;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .coupon button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .coupon button:hover {
+            background-color: #444;
+        }
+
+        .subtotal table {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .subtotal td {
+            padding: 10px;
+        }
+
+        .subtotal td:nth-child(2) {
+            font-weight: bold;
+        }
+
+        .subtotal a {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: #333;
+            color: white;
+            padding: 15px 25px;
+            text-align: center;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .subtotal a:hover {
+            background-color: #444;
+        }
+
+        /* Responsiveness */
+        @media (max-width: 1024px) {
+            #cart {
+                padding: 20px 5%;
+            }
+
+            #cart-add {
+                padding: 20px 5%;
+            }
+
+            .subtotal td {
+                text-align: center;
+            }
+
+            table th, table td {
+                padding: 10px;
+            }
+
+            input[type="number"] {
+                width: 50px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #header {
+                padding: 15px;
+            }
+
+            #navbar {
+                flex-direction: column;
+                align-items: center;
+                margin-top: 10px;
+            }
+
+            #navbar li {
+                margin: 10px 0;
+            }
+
+            #cart {
+                padding: 20px;
+            }
+
+            .coupon input {
+                width: 60%;
+            }
+
+            .subtotal table {
+                font-size: 14px;
+            }
+
+            .subtotal td {
+                padding: 8px;
+            }
+
+            .subtotal a {
+                font-size: 14px;
+                padding: 12px 20px;
+            }
+
+            input[type="number"] {
+                width: 45px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #header {
+                padding: 10px;
+            }
+
+            .coupon input {
+                width: 50%;
+            }
+
+            .subtotal a {
+                font-size: 12px;
+                padding: 10px 18px;
+            }
+
+            input[type="number"] {
+                width: 40px;
+            }
+
+            table th, table td {
+                padding: 8px;
+                font-size: 14px;
+            }
+
+            #cart {
+                padding: 15px 5%;
+            }
+
+            #cart-add {
+                padding: 15px 5%;
+            }
+
+            .subtotal td {
+                font-size: 12px;
+            }
+
+            #navbar {
+                flex-direction: column;
+                align-items: center;
+                margin-top: 10px;
+            }
+
+            #navbar li {
+                margin: 8px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <section id="header">
+        <a href="#"><img src="images/Banner.png" class="logo" alt=""></a>
+        <div>
+            <ul id="navbar">
+                <li><a href="index1.html">Home</a></li>
+                <li><a href="shop1.html">Shop</a></li>
+                <li><a href="about1.html">About</a></li>
+                <li><a href="contact1.html">Contact</a></li>
+                <li id="lg-bag"><a class="active" href="cart1.html"><i class="far fa-shopping-bag"></i></a></li>
+                <li id="user"><a href="User-Information.html"><i class="far fa-user"></i></a></li>
+                <a href="#" id="close"><i class="far fa-times"></i></a>
+            </ul>
+        </div>
+    </section>
+
+    <section id="page-header" class="about-header">
+        <h2>#cart</h2>
+        <p>Add your coupon code & SAVE upto 70%!</p>
+    </section>
+
+    <section id="cart">
+        <table>
+            <thead>
+                <tr>
+                    <th>Remove</th>
+                    <th>Image</th>
+                    <th>Product</th>
+                    <th>Size</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody id="cart-items">
+                <!-- Cart items will be dynamically added here -->
+            </tbody>
+        </table>
+    </section>
+
+    <section id="cart-add">
+        <div class="coupon">
+            <h3>Apply Coupon</h3>
+            <div>
+                <input type="text" placeholder="Enter Your Coupon">
+                <button class="normal">Apply</button>
+            </div>
+        </div>
+        <div class="subtotal">
+            <h3>Cart Totals</h3>
+            <table id="cart-totals">
+                <tr>
+                    <td>Cart Subtotal</td>
+                    <td>₱ 0</td>
+                </tr>
+                <tr>
+                    <td>Shipping</td>
+                    <td>Free</td>
+                </tr>
+                <tr>
+                    <td><strong>Total</strong></td>
+                    <td><strong>₱ 0</strong></td>
+                </tr>
+            </table>
+            <a href="https://www.paypal.com/ncp/payment/C3X9XXJ7MXKPC">Proceed To Checkout</a>
+        </div>
+    </section>
+
+    <script>
+        // Check if cart is in localStorage, if not, create an empty cart
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        // Function to remove item from cart
+        function removeItemFromCart(index) {
+            cart.splice(index, 1); // Remove item from cart array
+            localStorage.setItem("cart", JSON.stringify(cart)); // Update cart in localStorage
+            loadCart(); // Reload the cart page
+        }
+
+        // Function to load cart items dynamically
+        function loadCart() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartTotals = document.getElementById('cart-totals');
+            cartItemsContainer.innerHTML = ''; // Clear existing items
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                const subtotal = item.price * item.quantity;
+                total += subtotal;
+
+                const row = `
+                    <tr>
+                        <td><a href="#" onclick="removeItemFromCart(${index})"><i class="fas fa-times-circle" style="color:black"></i></a></td>
+                        <td><img src="${item.img}" alt=""></td>
+                        <td>${item.name}</td>
+                        <td>${item.size}</td> <!-- Added Size display -->
+                        <td>₱${item.price}</td> <!-- Peso sign -->
+                        <td><input type="number" value="${item.quantity}" min="1" onchange="updateQuantity(${index}, this.value)"></td>
+                        <td>₱${subtotal.toFixed(2)}</td> <!-- Peso sign -->
+                    </tr>
+                `;
+                cartItemsContainer.innerHTML += row;
+            });
+
+            // Update cart totals
+            cartTotals.querySelector("td:nth-child(2)").textContent = `₱${total.toFixed(2)}`; // Peso sign
+            cartTotals.querySelector("tr:last-child td:nth-child(2)").textContent = `₱${total.toFixed(2)}`; // Peso sign
+        }
+
+        // Function to update item quantity
+        function updateQuantity(index, quantity) {
+            cart[index].quantity = parseInt(quantity, 10);
+            localStorage.setItem("cart", JSON.stringify(cart)); // Update cart in localStorage
+            loadCart(); // Reload the cart page
+        }
+
+        // Load cart items when the page loads
+        window.onload = loadCart;
+    </script>
+
+</body>
+
+</html>
